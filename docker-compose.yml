@@ -1,0 +1,11 @@
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9192:9192"
+    environment:
+      - NODE_ENV=production
+      - PORT=9192
+    restart: unless-stopped

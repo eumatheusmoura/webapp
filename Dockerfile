@@ -1,17 +1,19 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
-COPY . .
-RUN yarn install --frozen-lockfile
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps
 
 FROM deps AS builder
 WORKDIR /app
 COPY . .
-RUN yarn build
+RUN npm run build
 
 FROM node:22-alpine AS runner
 WORKDIR /app
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+ENV NODE_ENV=production
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 9192
+ENV PORT=9192
 CMD ["node", "server.js"]
