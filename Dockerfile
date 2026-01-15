@@ -13,5 +13,5 @@ WORKDIR /app
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-EXPOSE 3000
+EXPOSE 9192
 CMD ["node", "server.js"]

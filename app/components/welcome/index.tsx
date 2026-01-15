@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import TemplateVarPanel, { PanelTitle, VarOpBtnGroup } from '../value-panel'
 import FileUploaderInAttachmentWrapper from '../base/file-uploader-in-attachment'
 import s from './style.module.css'
-import { AppInfoComp, ChatBtn, EditBtn, FootLogo, PromptTemplate } from './massive-component'
+import { AppInfoComp, ChatBtn, EditBtn, PromptTemplate } from './massive-component'
 import type { AppInfo, PromptConfig } from '@/types/app'
 import Toast from '@/app/components/base/toast'
 import Select from '@/app/components/base/select'
@@ -360,24 +360,16 @@ const Welcome: FC<IWelcomeProps> = ({
         {hasSetInputs && renderHasSetInputs()}
 
         {/* foot */}
-        {!hasSetInputs && (
+        {!hasSetInputs && siteInfo.privacy_policy && (
           <div className='mt-4 flex justify-between items-center h-8 text-xs text-gray-400'>
-
-            {siteInfo.privacy_policy
-              ? <div>{t('app.chat.privacyPolicyLeft')}
-                <a
-                  className='text-gray-500'
-                  href={siteInfo.privacy_policy}
-                  target='_blank'
-                >{t('app.chat.privacyPolicyMiddle')}</a>
-                {t('app.chat.privacyPolicyRight')}
-              </div>
-              : <div>
-              </div>}
-            <a className='flex items-center pr-3 space-x-3' href="https://dify.ai/" target="_blank">
-              <span className='uppercase'>{t('app.chat.powerBy')}</span>
-              <FootLogo />
-            </a>
+            <div>{t('app.chat.privacyPolicyLeft')}
+              <a
+                className='text-gray-500'
+                href={siteInfo.privacy_policy}
+                target='_blank'
+              >{t('app.chat.privacyPolicyMiddle')}</a>
+              {t('app.chat.privacyPolicyRight')}
+            </div>
           </div>
         )}
       </div>
