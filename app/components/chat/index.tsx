@@ -171,7 +171,7 @@ const Chat: FC<IChatProps> = ({
       {
         !isHideSendInput && (
           <div className='fixed z-10 bottom-6 left-1/2 transform -translate-x-1/2 pc:ml-[122px] tablet:ml-[96px] mobile:ml-0 pc:w-[794px] tablet:w-[794px] max-w-full mobile:w-full px-3.5'>
-            <div className='p-[5.5px] max-h-[150px] bg-white border-[1.5px] border-[#0C7ECF] rounded-xl overflow-y-auto'>
+            <div className='relative p-[5.5px] max-h-[150px] bg-white border-[1.5px] border-[#0C7ECF] rounded-xl overflow-y-auto'>
               {
                 visionConfig?.enabled && (
                   <>
@@ -232,6 +232,9 @@ const Chat: FC<IChatProps> = ({
                 </Tooltip>
               </div>
             </div>
+            <p className="mt-2 text-[11px] text-gray-500 leading-tight max-w-full">
+              This information is confidential and protected under the General Data Protection Regulation (GDPR) and applicable European data protection laws; any unauthorised use, disclosure, or processing is prohibited.
+            </p>
           </div>
         )
       }

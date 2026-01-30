@@ -74,12 +74,25 @@
 }
 
 .sendBtn {
-  background: url(./icons/send.svg) center center no-repeat;
+  position: relative;
+  background-color: #0C7ECF;
+}
+
+.sendBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url(./icons/send-active.svg) center center no-repeat;
+  background-size: 50%;
+  filter: brightness(0) invert(1);
 }
 
 .sendBtn:hover {
+  background-color: #0A6BB8;
+}
+
+.sendBtn:hover::before {
   background-image: url(./icons/send-active.svg);
-  background-color: #EBF5FF;
 }
 
 .textArea:focus+div .count {
@@ -87,5 +100,5 @@
 }
 
 .textArea:focus+div .sendBtn {
-  background-image: url(./icons/send-active.svg);
+  background-color: #0C7ECF;
 }
