@@ -15,7 +15,27 @@ const AppIcon: FC<AppIconProps> = ({
   rounded = false,
   background,
   className,
+  icon,
 }) => {
+  const logoSrc = icon ?? '/logo_sappy.png'
+  const isImage = logoSrc.startsWith('/') || logoSrc.startsWith('http') || logoSrc.endsWith('.png') || logoSrc.endsWith('.svg') || logoSrc.endsWith('.jpg')
+
+  if (isImage) {
+    return (
+      <span
+        className={classNames(
+          style.appIcon,
+          size !== 'medium' && style[size],
+          rounded && style.rounded,
+          className ?? '',
+        )}
+        style={{ background: background ?? (logoSrc === '/logo_sappy.png' ? 'transparent' : undefined) }}
+      >
+        <img src={logoSrc} alt="" className="w-full h-full object-contain" />
+      </span>
+    )
+  }
+
   return (
     <span
       className={classNames(
@@ -24,9 +44,7 @@ const AppIcon: FC<AppIconProps> = ({
         rounded && style.rounded,
         className ?? '',
       )}
-      style={{
-        background,
-      }}
+      style={{ background }}
     >
       🤖
     </span>
